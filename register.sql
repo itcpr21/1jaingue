@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2019 at 06:37 AM
+-- Generation Time: Sep 12, 2019 at 10:33 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -29,22 +29,39 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `register` (
-  `Firstname` text,
-  `Lastname` text,
-  `Username` text,
-  `Ps` text
+  `id` int(11) NOT NULL,
+  `firstname` text,
+  `lastname` text,
+  `username` text,
+  `ps` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`Firstname`, `Lastname`, `Username`, `Ps`) VALUES
-('hdhd', 'fhf', 'a', 'a'),
-('hdhd', 'fhf', 'a', '0cc175b9c0f1b6a831c399e269772661'),
-('a', 'a', 'g', 'g'),
-('Lanie', 'Jaingue', 'Lanie', '73f50c9f17291ce93ee52e50b73f6f63');
-COMMIT;
+INSERT INTO `register` (`id`, `firstname`, `lastname`, `username`, `ps`) VALUES
+(1, 'as', 'as', 'ss', '3691308f2a4c2f6983f2880d32e29c84');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,7 +28,14 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-
+public void clear(){
+    lname.setText("");
+    fname.setText("");
+    uname.setText("");
+    pword.setText("");
+    cfword.setText("");
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +68,9 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        register.setMinimumSize(new java.awt.Dimension(420, 450));
+        register.setPreferredSize(new java.awt.Dimension(420, 400));
+
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setForeground(new java.awt.Color(0, 204, 204));
 
@@ -88,6 +99,11 @@ public class Login extends javax.swing.JFrame {
 
         ok.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         ok.setText("Register");
+        ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,7 +293,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwordActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    register.setVisible(true);        // TODO add your handling code here:
+    register.setVisible(true);
+    this.setVisible(false);
+
+// TODO add your handling code here:
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
@@ -286,14 +306,11 @@ public class Login extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String conURL = "jdbc:mysql://localhost/Registerrdb?"
-            + "user=root&password=";
+            String conURL = "jdbc:mysql://localhost/Registerrdb?";
 
-            Connection con = DriverManager.getConnection(conURL);
+            Connection con = DriverManager.getConnection(conURL,"root","");
 
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM register "
-                + "WHERE Username = ?  AND Ps"
-                + " = MD5(?);");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM register WHERE Username = ?  AND Ps = MD5(?);");
             pstmt.setString(1, un);
             pstmt.setString(2, pw);
 
@@ -327,6 +344,57 @@ public class Login extends javax.swing.JFrame {
     private void lnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lnameActionPerformed
+
+    private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+String j = fname.getText();
+String a = lname.getText();
+String i = usname.getText();
+String n = new String (psword.getPassword());
+String g = new String (cfword.getPassword());
+
+registerClass rc = new registerClass();
+
+int z= rc.confirmPass(n, g);
+
+
+int k = rc.confirmUser(i);
+
+
+
+if(j.equals("")||a.equals("")||i.equals("")||n.equals("")||g.equals("")){
+    JOptionPane.showMessageDialog(register, "Please Fill Up All Field","ERROR",JOptionPane.ERROR_MESSAGE);
+     
+ }
+
+
+else{
+     if(z==1){
+     if(k==0){
+         int x= rc.reg(j, a, i, n);
+         
+     if(x==1){
+         JOptionPane.showMessageDialog(register, "Sucessfully Registered");
+         this.clear();
+         
+     }
+     }else{
+         JOptionPane.showMessageDialog(register,"Username Already Exist!","ERROR",JOptionPane.ERROR_MESSAGE);
+         uname.setText("");
+         uname.setBackground(Color.red);
+         uname.requestFocus();
+         
+     }
+     }else{
+         JOptionPane.showMessageDialog(register, "Password does not match","ERROR",JOptionPane.ERROR_MESSAGE);
+         cfword.setText("");
+         cfword.setBackground(Color.red);
+         cfword.requestFocus();
+     }  
+     
+ }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okActionPerformed
 
     /**
      * @param args the command line arguments
