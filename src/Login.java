@@ -306,11 +306,11 @@ public void clear(){
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String conURL = "jdbc:mysql://localhost/Registerrdb?";
+            String conURL = "jdbc:mysql://localhost/register?";
 
             Connection con = DriverManager.getConnection(conURL,"root","");
 
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM register WHERE Username = ?  AND Ps = MD5(?);");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM registertbl WHERE Username = ?  AND Ps = MD5(?);");
             pstmt.setString(1, un);
             pstmt.setString(2, pw);
 

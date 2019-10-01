@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2019 at 10:33 AM
+-- Generation Time: Oct 01, 2019 at 10:51 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -19,49 +19,54 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `registerrdb`
+-- Database: `register`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `register`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `register` (
-  `id` int(11) NOT NULL,
-  `firstname` text,
-  `lastname` text,
-  `username` text,
-  `ps` text
+CREATE TABLE `product` (
+  `ID` int(10) UNSIGNED ZEROFILL NOT NULL,
+  `product_name` text NOT NULL,
+  `quantity` int(3) NOT NULL,
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `register`
+-- Table structure for table `registertbl`
 --
 
-INSERT INTO `register` (`id`, `firstname`, `lastname`, `username`, `ps`) VALUES
-(1, 'as', 'as', 'ss', '3691308f2a4c2f6983f2880d32e29c84');
+CREATE TABLE `registertbl` (
+  `FirstName` text NOT NULL,
+  `LastName` text NOT NULL,
+  `UserrName` text NOT NULL,
+  `Pass` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `register`
+-- Indexes for table `product`
 --
-ALTER TABLE `register`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `register`
+-- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+ALTER TABLE `product`
+  MODIFY `ID` int(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
